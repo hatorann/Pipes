@@ -70,21 +70,6 @@ class Grid:
                      for r in range(self.rows)
                      for c in range(self.cols))
 
-    def __str__(self):
-        lines = []
-
-        for r in range(self.rows):
-            row_visual = []
-            for c in range(self.cols):
-                connections = frozenset(self.get_connections(r, c))
-                symbol = VISUAL_MAP.get(connections, "?")
-                row_visual.append(symbol)
-            
-            lines.append(" ".join(row_visual))
-        print("\n")
-        print("\n".join(lines))
-        print("\n")
-
     def __eq__(self,other):
         return self._rotation_tuple() == other._rotation_tuple()
     

@@ -1,6 +1,6 @@
 from puzzle import Tile,Grid
 from search import DFS
-
+from ui import replay_steps
 def choose_solver():
     while True:
         print("\nChoose a solver:")
@@ -53,15 +53,14 @@ def puzzle_load(filename):
 def main():
     input_file = choose_input()
     puzzle = puzzle_load(input_file)
-    puzzle.__str__()
     solver = choose_solver()
 
     solution = solver.solve(puzzle)
 
     if solution:
         print("\nSolution found!")
-        solution.__str__()
         print("Nodes expanded:", solver.nodes_expanded)
+        replay_steps(solver.steps)
     else:
         print("No solution found.")
 

@@ -89,7 +89,7 @@ def draw_grid(screen, font, small_font, grid, highlight, status, autoplay):
                      (0, panel_y,
                       screen_width, 100))
 
-    instructions = "→ Next   ← Back   ENTER AutoPlay   ESC Quit"
+    instructions = "→ Next   ← Back   E End   ENTER AutoPlay   ESC Quit"
     screen.blit(small_font.render(instructions, True, (50,50,50)),
                 (screen_width//2 - 250, panel_y + 10))
 
@@ -140,7 +140,7 @@ def replay_steps(steps):
 
         # autoplay logic
         if autoplay:
-            pygame.time.delay(150)
+            pygame.time.delay(1)
             if idx < len(steps) - 1:
                 idx += 1
             else:
@@ -167,3 +167,6 @@ def replay_steps(steps):
 
                 if event.key == pygame.K_RETURN:
                     autoplay = not autoplay
+
+                if event.key == pygame.K_e:
+                    idx = len(steps) - 1

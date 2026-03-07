@@ -1,6 +1,7 @@
 from puzzle import Tile,Grid
 from search import DFS, AStar
 from ui import replay_steps
+import os 
 
 def choose_solver():
     while True:
@@ -18,23 +19,14 @@ def choose_solver():
 
 def choose_input():
     while True:
-        print("\nChoose puzzle input:")
-        print("1. pipes_2x2.txt")
-        print("2. pipes_3x3.txt")
-        print("3. pipes_4x4.txt")
-        print("4. pipes_4x4_2.txt")
-        choice = input("Enter choice: ")
+        filename = input("\nEnter testcase name: ")
 
-        if choice == "1":
-            return "inputs/pipes_2x2.txt"   
-        elif choice == "2":
-            return "inputs/pipes_3x3.txt"
-        elif choice == "3":
-            return "inputs/pipes_4x4.txt"
-        elif choice == "4":
-            return "inputs/pipes_4x4_2.txt"
+        path = os.path.join("inputs", filename)
+
+        if os.path.exists(path):
+            return path
         else:
-            print("Invalid choice. Try again.")
+            print("File not found in 'inputs/' folder. Try again.")
 
 def puzzle_load(filename):
     with open(filename,"r") as f:

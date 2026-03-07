@@ -1,6 +1,8 @@
 import time
 from puzzle import Tile, Grid
 from search import DFS, AStar
+import glob
+import os
 
 def puzzle_load(filename):
     """Load puzzle from file."""
@@ -44,11 +46,11 @@ def benchmark_solver(solver_class, puzzle, puzzle_name):
 
 def run_benchmark():
     """Run benchmark on all puzzles with both solvers."""
+    puzzle_files = glob.glob("inputs/*.txt")
+
     puzzles = [
-        ("inputs/pipes_2x2.txt", "2x2"),
-        ("inputs/pipes_3x3.txt", "3x3"),
-        ("inputs/pipes_4x4.txt", "4x4"),
-        ("inputs/pipes_4x4_2.txt", "4x4_2"),
+        (file, os.path.splitext(os.path.basename(file))[0])
+        for file in puzzle_files
     ]
     
     solvers = [DFS, AStar]
